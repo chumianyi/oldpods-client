@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart' hide Banner;
 
 import '../models/models.dart';
 import '../services/api_service.dart';
