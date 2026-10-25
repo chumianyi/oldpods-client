@@ -135,7 +135,7 @@ class _FramesScreenState extends State<FramesScreen> {
                               ),
                             );
                           },
-                        ))),
+                        )),
             ),
     );
   }
