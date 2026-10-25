@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
+import '../services/api_client.dart';
 import '../services/api_service.dart';
 import '../state/app_state.dart';
 import '../theme/neu_theme.dart';
@@ -125,6 +126,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 _SheetAction(
                   icon: Icons.close,
                   text: '取消',
+                  color: p.subText,
                   onTap: () => Navigator.pop(ctx),
                 ),
               ],
