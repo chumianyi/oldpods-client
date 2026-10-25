@@ -2,6 +2,12 @@
 
 基于 Flutter 的「老豆荚」（oldpods.cn）第三方 Android 客户端，采用 **Neumorphism（新拟态）** 设计风格，最低支持 **Android 7.0（API 24）**，通过 GitHub Actions 自动构建可安装的签名 Release APK。
 
+## 下载安装
+
+**[下载 oldpods-1.0.0-release.apk](https://github.com/chumianyi/oldpods-client/releases/download/v1.0.0/oldpods-1.0.0-release.apk)**（约 50 MB，通用包，支持 armeabi-v7a / arm64-v8a / x86_64）
+
+安装时需允许「安装未知来源应用」。签名由 CI 现场生成（alias `oldpods`）。
+
 ## 功能特性
 
 - **首页与浏览**：轮播 Banner、公告、分类导航、热门应用、猜你喜欢
