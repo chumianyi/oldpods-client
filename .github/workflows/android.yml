@@ -24,8 +24,15 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: 安装 Android SDK 组件
-        uses: android-actions/setup-android@v3
+      - name: 检查 Android SDK（运行器已预装）
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" || true
+          ls "$ANDROID_HOME/build-tools" || true
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
+          if [ ! -d "$ANDROID_HOME/platforms/android-34" ]; then
+            "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"
+          fi
 
       - name: 安装 Flutter 3.24.5
         uses: subosito/flutter-action@v2
