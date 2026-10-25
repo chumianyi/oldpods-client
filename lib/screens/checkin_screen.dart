@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../services/api_client.dart';
 import '../services/api_service.dart';
 import '../services/storage.dart';
 import '../state/app_state.dart';
