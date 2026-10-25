@@ -49,7 +49,7 @@ class _MainShellState extends State<MainShell> {
         onTap: _goTab,
         unread: AppState.instance.unread,
       ),
-      floatingActionButton: _index == 1 ? _BrowseFab(p: p) : null,
+      floatingActionButton: _index == 1 ? _BrowseFab(p) : null,
     );
   }
 
