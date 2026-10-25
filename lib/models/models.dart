@@ -17,6 +17,7 @@ double _d(dynamic v, [double dd = 0]) {
 }
 
 bool _b(dynamic v) => v == true || v == 1 || v == '1' || v == 'true';
+bool _bv(dynamic v, [bool d = false]) => v == null ? d : _b(v);
 
 String _str(dynamic v, [String d = '']) => _s(v) ?? d;
 
@@ -213,7 +214,7 @@ class DownloadButton {
         channel: _str(j['channel']),
         priceTag: _str(j['price_tag']),
         isPurchased: _b(j['is_purchased']),
-        isUnlocked: _b(j['is_unlocked'], true),
+        isUnlocked: _bv(j['is_unlocked'], true),
         needPay: _b(j['need_pay']),
         getUrlApi: _str(j['get_url_api']),
       );
@@ -223,6 +224,10 @@ class Submitter {
   final int id;
   final String nickname;
   final String avatar;
+  final String frame;
+  final double frameW;
+  final double frameX;
+  final double frameY;
   final bool isMember;
   final String memberExpire;
   final bool isMemberPermanent;
@@ -233,6 +238,10 @@ class Submitter {
     required this.id,
     required this.nickname,
     required this.avatar,
+    required this.frame,
+    required this.frameW,
+    required this.frameX,
+    required this.frameY,
     required this.isMember,
     required this.memberExpire,
     required this.isMemberPermanent,
@@ -245,6 +254,10 @@ class Submitter {
         id: _i(j['id']),
         nickname: _str(j['nickname']),
         avatar: _str(j['avatar']),
+        frame: _str(j['frame'], _str(j['frame_url'])),
+        frameW: _d(j['frame_w'], 100),
+        frameX: _d(j['frame_x']),
+        frameY: _d(j['frame_y']),
         isMember: _b(j['is_member']),
         memberExpire: _str(j['member_expire']),
         isMemberPermanent: _b(j['is_member_permanent']),
@@ -516,7 +529,7 @@ class UserInfo {
 
 class UserProfile {
   final UserItem user;
-  final AppListData submissions;
+  final SubmissionList submissions;
   UserProfile({required this.user, required this.submissions});
 
   factory UserProfile.fromJson(Map<String, dynamic> j) {
@@ -524,7 +537,7 @@ class UserProfile {
     final subsMap = subsRaw is Map ? Map<String, dynamic>.from(subsRaw) : <String, dynamic>{};
     return UserProfile(
       user: UserItem.fromJson(j),
-      submissions: AppListData.fromJson(subsMap),
+      submissions: SubmissionList.fromJson(subsMap),
     );
   }
 }
@@ -891,8 +904,8 @@ class RewardInfo {
 
   factory RewardInfo.fromJson(Map<String, dynamic> j) => RewardInfo(
         coins: _i(j['coins'], _i(j['reward'])),
-        claimed: _b(j['claimed'], _b(j['is_claimed'])),
-        canClaim: _b(j['can_claim'], !_b(j['claimed'], _b(j['is_claimed']))),
+        claimed: _bv(j['claimed'], _b(j['is_claimed'])),
+        canClaim: _bv(j['can_claim'], !_b(j['claimed'], _b(j['is_claimed']))),
         raw: j,
       );
 }
