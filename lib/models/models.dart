@@ -905,7 +905,7 @@ class RewardInfo {
   factory RewardInfo.fromJson(Map<String, dynamic> j) => RewardInfo(
         coins: _i(j['coins'], _i(j['reward'])),
         claimed: _bv(j['claimed'], _b(j['is_claimed'])),
-        canClaim: _bv(j['can_claim'], !_b(j['claimed'], _b(j['is_claimed']))),
+        canClaim: _bv(j['can_claim'], !_bv(j['claimed'], _b(j['is_claimed']))),
         raw: j,
       );
 }
