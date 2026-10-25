@@ -6,11 +6,14 @@ pluginManagement {
             localProperties.withInputStream { properties.load(it) }
         }
         def sdk = properties.getProperty("flutter.sdk")
-        if (sdk == null) {
+        if (sdk == null || sdk.toString().trim().isEmpty()) {
             sdk = System.getenv("FLUTTER_ROOT")
         }
-        assert sdk != null : "flutter.sdk not set in local.properties"
-        return sdk
+        if (sdk == null || sdk.toString().trim().isEmpty()) {
+            sdk = System.getenv("FLUTTER_HOME")
+        }
+        assert sdk != null && !sdk.toString().trim().isEmpty() : "flutter.sdk not set in local.properties"
+        return sdk.toString().trim()
     }
 
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
